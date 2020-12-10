@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calculator</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-size: 30px;
+            font-family: Arial;
+        }
+        body{
+            background-color: black;
+        }
+        .display{
+            color: white;
+            font-size: 60px;
+            text-align: right;
+            
+            padding: 20px;
+        }
+        
+        .keys{
+            width: 90px;
+            height: 90px;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 90px;
+            border-radius: 90px;
+            margin: 5px;
+            background-color: #333333;
+            color: white;
+        }
+        .calc{
+            margin: 100px auto;
+            width:400px;
+
+        }
+       
+        .keypad-table tr:first-child .keys{
+            background-color: #a5a5a5;
+        }
+        .keypad-table tr td:last-child .keys{
+            background-color: #ffa45c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calc">
+<div class="display">000</div>
+
+<div class="keypad">
+    <table class="keypad-table">
+        <tr>
+            <td>
+                <div class="keys">AC</div>
+            </td>
+            <td>
+                <div class="keys">B</div>
+            </td>
+            <td>
+                <div class="keys">%</div>
+            </td>
+            <td>
+                <div class="keys">&#247;</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="keys">7</div>
+            </td>
+            <td>
+                <div class="keys">8</div>
+            </td>
+            <td>
+                <div class="keys">9</div>
+            </td>
+            <td>
+                <div class="keys">x</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="keys">4</div>
+            </td>
+            <td>
+                <div class="keys">5</div>
+            </td>
+            <td>
+                <div class="keys">6</div>
+            </td>
+            <td>
+                <div class="keys">-</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="keys">1</div>
+            </td>
+            <td>
+                <div class="keys">2</div>
+            </td>
+            <td>
+                <div class="keys">3</div>
+            </td>
+            <td>
+                <div class="keys">+</div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" >
+                <div class="keys" style="width: 190px;">0</div>
+            </td>
+
+            <td>
+                <div class="keys">.</div>
+            </td>
+            <td>
+                <div class="keys">=</div>
+            </td>
+        </tr>
+
+
+
+    </table>
+</div>
+</div>
+</body>
+</html>

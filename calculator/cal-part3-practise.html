@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calculator</title>
+    <style>
+        *{
+            padding: 0;
+            box-sizing: border-box;
+            color: white;
+            font-family: Arial;
+        }
+
+        .container{
+            width: 400px;
+            margin: 200px auto;
+            height: auto;
+
+        }
+        .display{
+            text-align: right;
+            font-size: 60px;
+            padding: 20px;
+            width: 400px;
+            height: auto;
+            
+        }
+
+        .key-table tr:first-child .keys{
+                background-color: #a5a5a5;
+        }
+
+        .key-table tr:first-child .keys:active{
+            background-color: papayawhip;
+
+        }
+
+        .key-table td:last-child .keys{
+            background-color: #ffa45c;
+        }
+
+        .key-table td:last-child .keys:active{
+            background-color: gainsboro;
+
+        }
+        .keys{
+            border: 2px solid black;
+            width: 90px;
+            height: 90px;
+            margin: 5px;
+            text-align: center;
+            /*padding: 30px 30px;*/
+            line-height: 90px;
+            border-radius: 90px;
+            background-color: #333333;
+            font-size: 30px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .keys:active{
+            background-color: gainsboro;
+
+        }
+        body{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="display">
+    0
+    </div>
+    <div class="keypad">
+        <table class="key-table">
+            <tr>
+                <td>
+                    <div class="keys" onclick="allclear()">AC</div>
+                </td>
+                <td>
+                    <div class="keys" onclick="cleanlast()">C</div>
+                </td>
+                <td>
+                    <div class="keys" onclick="showDisplay('%')">%</div>
+                </td>
+                <td>
+                    <div class="keys" onclick="showDisplay('/')">&divide;</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="keys" onclick="showDisplay(7)"> 7</div>
+                </td>
+                <td>
+                    <div class="keys" onclick="showDisplay(8)">8</div>
+                </td>
+                <td>
+                    <div class="keys" onclick="showDisplay(9)">9</div>
+                </td>
+                <td>
+                    <div class="keys" onclick="showDisplay('*')">&times;</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="keys" onclick="showDisplay(4)">4</div>
+                </td>
+                <td>
+                    <div class="keys" onclick="showDisplay(5)">5</div>
+                </td>
+                <td>
+                    <div class="keys" onclick="showDisplay(6)">6</div>
+                </td>
+                <td>
+                    <div class="keys" onclick="showDisplay('-')">&minus;</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="keys" onclick="showDisplay(1)">1</div>
+                </td>
+                <td>
+                    <div class="keys" onclick="showDisplay(2)">2</div>
+                </td>
+                <td>
+                    <div class="keys" onclick="showDisplay(3)">3</div>
+                </td>
+                <td>
+                    <div class="keys" onclick="showDisplay('+')">&plus;</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" >
+                    <div class="keys"  onclick="showDisplay(0)"style="width: 190px;">0</div>
+                </td>
+
+                <td>
+                    <div class="keys"  onclick="showDisplay('.')">.</div>
+                </td>
+                <td>
+                    <div class="keys" onclick="calculate()">=</div>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<script>
+    let displayBox=document.querySelector(".display");
+    let operator=["+","-","*","/","%","."];
+
+
+    function showDisplay(x){
+        let current=displayBox.innerHTML;
+        let lastIndex=current[current.length-1];
+        if(displayBox.innerHTML== 0){
+           return  displayBox.innerHTML=x;
+        }
+        else if(operator.includes(x) && operator.includes(lastIndex)){
+
+            return  displayBox.innerHTML=current.substring(0,current.length-1) +x;
+        }
+
+           return  displayBox.innerHTML+=x;
+
+    }
+
+    function calculate(){
+        let current=displayBox.innerHTML;
+        displayBox.innerHTML=eval(current);
+    }
+
+    function allclear(){
+        displayBox.innerHTML=0;
+    }
+
+    function cleanlast(){
+        let current=displayBox.innerHTML;
+        if(current.length==1){
+            displayBox.innerHTML= 0; 
+        }
+        else{
+            displayBox.innerHTML=current.substring(0,current.length-1);
+        }
+       
+    }
+</script>
+</body>
+</html>

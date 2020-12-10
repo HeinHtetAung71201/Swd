@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+<body>
+    <h3>To Do List</h3>
+    <div>
+        <div>
+            <input type="text">
+            <button onclick="add()" >Add</button>
+        </div>
+        <div>
+            <ul>
+                    
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let input=document.querySelector("input");
+        let List=document.querySelector("ul");
+        let minLength=4;
+        let i=1;
+        //fliter for text
+        function textFilter(x){
+            if(x){
+                 if(x.length>=minLength){
+                    return x;
+                }
+                else{
+                    alert("Error! (The length of type is too shot)");
+                    return false;
+                }
+            }
+            else{
+                alert("Error! (Please Insert Data)")
+                return false;
+            }
+        }
+
+        function showlist(text){
+            List.innerHTML+=`<li class="input-text " id="inputText${i}">
+            <span class="input-span" id="inputSpan${i}" >${text}</span>
+                        <button id="delBtn" onclick="deltetList(${i})" >Delete</button>
+                        <button id="editBtn" onclick="editList(${i})"> Edit</button>
+                        
+                    </li>`;
+                    i++;
+        }
+
+        function deltetList(listId){
+            
+            let  currentText=document.getElementById(`inputSpan${listId}`).innerHTML;
+            let current=document.getElementById(`inputText${listId}`);
+            let deltetConfrim= confirm(`Are you sure to Delete the "${currentText}"`);
+
+            if(deltetConfrim){
+                
+            List.removeChild(current);
+            }
+            else{
+                alert("Delete Canceled");
+            }
+        } 
+        
+        
+        //main
+        function add(){
+            let inputText= textFilter(input.value);
+            if(inputText){
+            showlist(inputText);
+            input.value="";
+            }
+        }
+
+            // let newInput=document.querySelector("input");
+            // let newText=textFilter(newInput.innerHTML);
+            // function editList(listid){
+            //     let New=window.prompt("Enter text you want to edit....");
+            //     newText=New;
+            // }
+            
+            function editList(id){
+                let currentText=document.getElementById(`inputSpan${id}`).innerHTML;
+                let edit=window.prompt("Enter Here....",currentText);
+                if(textFilter(edit)){
+                 if(edit.length>=minLength){
+                    return document.getElementById(`inputSpan${id}`).innerHTML= edit;
+                }
+                else{
+                    alert("Error! (The length of type is too shot)");
+                    return false;
+                }
+            }
+            
+            }
+            
+       
+    </script>
+</body>
+</html>

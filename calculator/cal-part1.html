@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div >
+        <h1 class="display" >
+            
+        </h1>
+    </div>
+    <div class="keys">
+        
+    </div>
+
+    <script>
+        let displayText=document.querySelector(".display");
+        let displayKey=document.querySelector(".keys");
+        let calculationKey=["+","-","*","/","="];
+
+        function calculate(){
+            let caltext=displayText.innerHTML;
+            displayText.innerHTML=eval(caltext);
+        }
+
+        function showDisplay(x){
+            displayText.innerHTML+=x;
+        }
+
+        for(let i=0; i<=9; i++){
+            displayKey.innerHTML+=`<button onclick='showDisplay(${i})'>${i}</button>`;
+        }
+        
+        calculationKey.map((el)=>{
+        if(el=="="){
+            displayKey.innerHTML+=`<button onclick='calculate("${el}")'>${el}</button>`;
+        }
+        else{
+            displayKey.innerHTML+=`<button onclick='showDisplay("${el}")'>${el}</button>`;
+        }
+        
+        
+        });
+    </script>
+</body>
+</html>

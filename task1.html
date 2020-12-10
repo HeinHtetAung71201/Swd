@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>To Do list</h3>
+    <div id="input">
+        <div >
+            <input id="inputText" type="text">
+            <button id="addBtn" class="btn btn-add"onclick="add()">Add</button>
+        </div>
+        <div>
+            <ul class="list" id="list">
+                
+                
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let mintextLength=4;
+        let inputText=document.getElementById("inputText");
+        let list=document.getElementById("list");
+        let i=1;
+
+        function textFilter(x){
+            if(x){
+                    if(x.length>=mintextLength)
+                    {
+                     return x;
+                    }
+                    else{
+                        alert("Minium type error!")
+                        return false;
+                    }
+                }
+                else 
+                {
+                    alert("Input Error!");
+                return false;
+            }
+        }
+
+        
+
+        function showList(text){
+            list.innerHTML+=`<li class="listItem" id="list${i}">
+                    <button class=" btn del-dtn">Delete</button>
+                    <button class="btn edit-btn">Edit</button>
+                    <span id="listText${i}"> ${text}</span>
+                </li>`;
+                i++;
+        }
+            function add(){
+                        let input= textFilter(inputText.value);
+                        if(input){
+                        showList(input);
+                        inputText.value="";
+                        }
+                    }
+    </script>
+</body>
+</html>

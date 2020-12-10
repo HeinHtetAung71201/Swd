@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet"> 
+    <style>
+        *{
+            font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
+           
+        }
+
+        #container{
+            width: 350px;
+            height: 500px;
+            border: 2px solid black ;
+            margin: 150px auto;
+            background-color: #2f89fc;
+            border-radius: 20px;
+            
+        }
+
+        #input{
+            margin-left: 10px;
+            width: auto;
+            height: 100px;
+            /* margin-button10 */color: #f5f5f5;
+        }
+        /* #text{
+            
+            width: 200px;
+            height: 30px;
+            color: #f5f5f5;
+            margin-right: 20px;
+        } */
+        
+        ::-webkit-input-placeholder{
+            color: #f5f5f5;
+        }
+        #textInput{
+            
+            border-color: #f5f5f5b7;
+            background-color: #2f89fc;
+            color: #f5f5f5;
+            /* width: 180px;
+           height: 30px; */
+           border-top-right-radius: 10px;
+        } 
+        #addBtn{
+            border: none;
+            float: right;
+            margin-right: 10px;
+            background-color: #2f89fc;
+            margin-bottom: 5px;}
+        
+        #list{
+            width: auto;
+            height:376px;
+            background-color: #bdd7f7;
+            border-radius: 20px;
+           
+            overflow: hidden;
+            
+
+        }
+        /* #ListItem{
+            list-style: none;
+        } */
+            .DelBtn{
+                background-color:#bdd7f7;
+                float: right;
+                margin-right: 10px;
+                margin-left: 10px;
+                border: none;
+
+            }
+            .EditBtn{
+                background-color:#bdd7f7;
+                float: right;
+                border: none;
+            }
+        
+            /* .input-text:checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+ .input-text:checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+} */
+
+body{
+    background-image: url("background.jpg");
+   background-attachment: fixed;
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+            
+          
+
+       
+        
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="input">
+            <button id="addBtn" onclick="add()">
+                <span style="font-size: 50px;
+                width: 75px; color: white;
+                "
+                ><i class="fas fa-plus-circle fa-fw"></i></span>
+            </button>
+            <h2>To Do List</h2>
+            
+        
+            <input id="textInput" type="text" placeholder="Type Here.."  autofocus=""> 
+            
+            
+        </div>
+
+            <div id="list">
+               <ul id="ListItem">
+                
+               </ul>
+            </div>
+            
+    </div>
+    <script>
+        let input=document.getElementById("textInput");
+        let list=document.getElementById("ListItem");
+        let miniLength=4;
+        let i=1;
+        function textFilter(x){
+            if(x){
+                if(x.length>=miniLength){
+                    return x;
+                }
+                else{
+                    alert(`Minimum Text Length Error! should add atleast 4 words`);
+                    return false;
+                }
+
+            }
+            else{
+                alert(`Please insert the task!`);
+                return false;
+            }
+
+            
+        }
+        //show List function
+            function showlist(text){
+                list.innerHTML+=`<li class="input-text" id="inputText${i}">
+            <span class="input-span" id="inputSpan${i}" >${text}</span>
+                 
+                        <button id="delBtn" class="DelBtn" onclick="deltetList(${i})" ><i class="fas fa-trash-alt"></i></button>
+                        <button id="editBtn" class="EditBtn" onclick="editList(${i})"> <i class="far fa-edit"></i></button>
+                    
+                        </li>`;
+                    i++;
+            }
+        //addbutton fuction
+        function add(){
+            let FilterofText= textFilter(input.value);
+            if(FilterofText){
+                showlist(FilterofText);
+            input.value="";
+            }
+            
+        }
+        function deltetList(listId){
+            
+            let  currentText=document.getElementById(`inputSpan${listId}`).innerHTML;
+            let current=document.getElementById(`inputText${listId}`);
+            let deltetConfrim= confirm(`Are you sure to Delete the "${currentText}"`);
+
+            if(deltetConfrim){
+                
+            list.removeChild(current);
+            }
+            else{
+                alert("Delete Canceled");
+            }
+        } 
+
+    function editList(id){
+        let  currentText=document.getElementById(`inputSpan${id}`).innerHTML;
+        let newText=prompt("Enter the text you would like to edit.."+"("+currentText+")");
+        if(textFilter(newText)){
+            if(newText.length>=miniLength){
+                return document.getElementById(`inputSpan${id}`).innerHTML=newText;
+            }
+            else{
+                alert("You must write any task...");
+                return false;
+            }
+        }
+        else{
+            alert("Error!!  Insert words more than." );
+            return false; 
+        }
+    }
+        
+    </script>
+</body>
+</html>
